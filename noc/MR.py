@@ -41,6 +41,11 @@ modulation_0_1          = 0.4
 lambda_misplace_factor  = 3
 P_modulator_data_0      = 0
 
+
+k_e                     = 6.59  # kapler loss in
+k_d                     = 6.59  # kapler loss output
+k_p                     = 1     # kapler loss in circle
+
 delta   = 0.62  # delta in 3-db bandwidth
 T_MR_0      = 25
 T_VCSEL_0   = T_0
@@ -57,11 +62,21 @@ def GetLambdaVCSEL(T):
 
 
 def GetDropPower(L_VCSEL, L_MR):
-    return math.pow(delta, 2) / (math.pow((L_VCSEL - L_MR), 2) + math.pow(delta, 2))
+    num     = 2 * k_e * k_d
+    divide  = math.pow(k_e, 2) + math.pow(k_d, 2) + math.pow(k_p, 2)
+    k       = math.pow( num / divide, 2)
+    return k * math.pow(delta, 2) / (math.pow((L_VCSEL - L_MR), 2) + math.pow(delta, 2))
 
 
 def GetThroughPower(L_VCSEL, L_MR):
-    return 1- (math.pow(delta, 2) / (math.pow((L_VCSEL - L_MR), 2) + math.pow(delta, 2)))
+    num     = 4*math.pow(k_e, 2)*(math.pow(k_d, 2) + math.pow(k_p, 2))
+    divide  = math.pow(math.pow(k_e, 2) + math.pow(k_d, 2) + math.pow(k_p, 2), 2)
+    k       = num / divide
+    return 1 - k*(math.pow(delta, 2) / (math.pow((L_VCSEL - L_MR- 1), 2) + math.pow(delta, 2)))
+
+
+def PowerToDb(transfer):
+    return 10*math.log10(transfer)
 
 
 # off chip
@@ -76,10 +91,10 @@ ThoughtPower    = []
 #     ThoughtPower.append(GetThroughPower(1550, GetLambdaMR(T_i)))
 
 for L_i in L :
-    DropPower.append(GetDropPower(L_i, GetLambdaMR(25)))
+    DropPower.append(PowerToDb(GetDropPower(L_i, GetLambdaMR(25))))
 
 for L_i in L :
-    ThoughtPower.append(GetThroughPower(L_i, GetLambdaMR(25)))
+    ThoughtPower.append(PowerToDb(GetThroughPower(L_i, GetLambdaMR(25))))
 
 plt.plot(L, DropPower, "r--", L, ThoughtPower)
 plt.ylabel("drop power")
