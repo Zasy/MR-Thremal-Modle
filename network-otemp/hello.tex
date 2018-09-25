@@ -53,8 +53,36 @@
 k_{e} = k_{d}, k_{e}^2 = 43.36 k_{p}^2
 \end{equation}
 
-\section{}
+\section{Micro Resonator Router Power Model}
+A optical router consist of Micro resonators. The floorplan of MR router expressed as $A$, $P$, $C$. $A_{ij}$ is the number of active MRs from port $i$ to port $j$. $P_{ij}$ is the number of passive MRs from port $i$ to port $j$.  $C_{ij}$ is the number of crossing loss from port $i$  to port $j$. 
 
+\section{Active/Passive MR Optical Loss Model}
+The optical loss in MR mainly consist of active MR loss and passive MR loss. The lambda of VCSEL and the lambda of MR is sensitive to the temperature as .
+
+\begin{equation}
+\label{active MR loss} 
+L_{active} = 10log(\frac{P_{drop}}{P_{in}})
+\end{equation}
+
+\begin{equation}
+\label{active MR loss} 
+L_{passive} = 10log(\frac{P_{thro}}{P_{in}})
+\end{equation}
+
+\section{Router level Optical loss Model}
+Router level optical loss is different from the input port and output port. These factors decide the.numbers of active MRs and passive MRs which optical conducting. So the optical loss from port i to port j could be expressed as :
+\begin{equation}
+\label{active MR loss} 
+L_{ij} = A_{ij}\cdot L_{active} + P_{ij}\cdot L_{passive} + C_{ij}*L_{c}
+\end{equation}
+
+\section{Network level Optical loss Model}
+Network level Optical loss Model is decided by the all optical loss in router and $L_{w}$ optical in wave guide. So the all optical loss in a whole path from source to the destination can be expressed as:
+\begin{equation}
+\label{active MR loss} 
+L(s, d) = \sum_{m=1}^{N}L_{ij}^{m} + L_{WG}
+\end{equation}
+N is the number of all routers optical conducting from source to destination. $i$ is the input port in  $m$ router and $j$ is the output port in $m$ router. 
 
 % For many users, the previous commands will be enough.
 % If you want to directly input Unicode, add an Input Menu or Keyboard to the menu bar 
