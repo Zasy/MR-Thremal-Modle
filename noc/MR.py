@@ -2,8 +2,8 @@ import math
 import matplotlib.pyplot as plt
 import numpy as np
 
-k_e = 1     # the fraction of optical power couple into
-k_d = 1     # the fraction of optical power couple out
+k_e = 6.59     # the fraction of optical power couple into
+k_d = 6.59     # the fraction of optical power couple out
 k_p = 1     # intinstic power loss per round-trip in the MR
 
 L_VCSEL_0 = 1550  # lambda_vcsel_0
@@ -41,12 +41,9 @@ modulation_0_1          = 0.4
 lambda_misplace_factor  = 3
 P_modulator_data_0      = 0
 
+lambda_bias = 0.4  #
 
-k_e                     = 6.59  # kapler loss in
-k_d                     = 6.59  # kapler loss output
-k_p                     = 1     # kapler loss in circle
-
-delta   = 0.62  # delta in 3-db bandwidth
+delta       = 0.31  # delta in 3-db bandwidth
 T_MR_0      = 25
 T_VCSEL_0   = T_0
 
@@ -72,31 +69,46 @@ def GetThroughPower(L_VCSEL, L_MR):
     num     = 4*math.pow(k_e, 2)*(math.pow(k_d, 2) + math.pow(k_p, 2))
     divide  = math.pow(math.pow(k_e, 2) + math.pow(k_d, 2) + math.pow(k_p, 2), 2)
     k       = num / divide
-    return 1 - k*(math.pow(delta, 2) / (math.pow((L_VCSEL - L_MR- 1), 2) + math.pow(delta, 2)))
+    return 1 - k*(math.pow(delta, 2) / (math.pow((L_VCSEL - L_MR - 1), 2) + math.pow(delta, 2)))
 
 
 def PowerToDb(transfer):
     return 10*math.log10(transfer)
 
+def PaintLambdaRelation():
+    # off chip
+    L = np.arange(1545, 1555, 0.1)
+    T = np.arange(0, 100, 1)
+    DropPower       = []
+    ThoughtPower    = []
+    # for T_i in T:
+    #     DropPower.append(GetDropPower(1550, GetLambdaMR(T_i)))
+    #
+    # for T_i in T:
+    #     ThoughtPower.append(GetThroughPower(1550, GetLambdaMR(T_i)))
 
-# off chip
-L = np.arange(1545, 1555, 0.1)
-T = np.arange(0, 100, 1)
-DropPower       = []
-ThoughtPower    = []
-# for T_i in T:
-#     DropPower.append(GetDropPower(1550, GetLambdaMR(T_i)))
-#
-# for T_i in T:
-#     ThoughtPower.append(GetThroughPower(1550, GetLambdaMR(T_i)))
+    for L_i in L :
+        DropPower.append(PowerToDb(GetDropPower(L_i, GetLambdaMR(25))))
 
-for L_i in L :
-    DropPower.append(PowerToDb(GetDropPower(L_i, GetLambdaMR(25))))
+    for L_i in L :
+        ThoughtPower.append(PowerToDb(GetThroughPower(L_i, GetLambdaMR(25))))
 
-for L_i in L :
-    ThoughtPower.append(PowerToDb(GetThroughPower(L_i, GetLambdaMR(25))))
+    plt.plot(L, DropPower, "r--", L, ThoughtPower)
+    plt.ylabel("drop power dB")
+    plt.show()
 
-plt.plot(L, DropPower, "r--", L, ThoughtPower)
-plt.ylabel("drop power")
-plt.show()
 
+def PaintTemprature():
+    T = np.arange(25, 85, 1)
+    DropPower       = []
+    ThoughtPower    = []
+    for t_i in T:
+        DropPower.append(PowerToDb(GetDropPower(1550.5, GetLambdaMR(t_i))))
+        ThoughtPower.append(PowerToDb(GetThroughPower(1550.5, GetLambdaMR(t_i))))
+
+    plt.plot(T, DropPower, "r--", T, ThoughtPower)
+    plt.ylabel("drop power dB")
+    plt.show()
+
+PaintTemprature()
+PaintLambdaRelation()
