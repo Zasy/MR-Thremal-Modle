@@ -1,0 +1,17 @@
+# Layer 0: core layer 1
+0
+Y
+Y
+1.75e6
+0.01
+0.0015
+8x8x2_layer1.flp
+
+# Layer 1: core layer 2
+1
+Y
+Y
+1.75e6
+0.01
+0.0015
+8x8x2_layer2.flp

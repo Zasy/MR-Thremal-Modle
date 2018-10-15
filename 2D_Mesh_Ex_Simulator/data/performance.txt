@@ -1,0 +1,1 @@
+./trafficnew/2d_mesh_8x8/fpppp_2d_mesh_8x8.stp	fpppp	0.31	55	0.005	2	2.69851	2.69851	512528	3.69848e-05	

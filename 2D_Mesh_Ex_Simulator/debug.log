@@ -1,0 +1,181 @@
+g++ -Wall -g  -I. -I.. -I/home/zhangzhe/Profile/systemC/include -L. -L.. -L/home/zhangzhe/Profile/systemC/lib-linux64 -I. -I.. -I/home/zhangzhe/Profile/systemC/include -L. -L.. -L/home/zhangzhe/Profile/systemC/lib-linux64 -std=c++11 -o 3D_OMESH ./main.cpp -lsystemc -lm  2>&1 | c++filt
+In file included from ./main.cpp:2:0:
+./electronic_torus.h:978:9: warning: multi-line comment [-Wcomment]
+         // cout << "id0 table is "<<router[0][0][0].qtable[10][0] << "\t" << router[0][0][0].qtable[10][1] << \
+         ^
+./electronic_torus.h:981:9: warning: multi-line comment [-Wcomment]
+         // cout << "id10 table is "<<router[2][1][0].qtable[10][0] << "\t" << router[2][1][0].qtable[10][1] << \
+         ^
+./electronic_torus.h:984:9: warning: multi-line comment [-Wcomment]
+         // cout << "id1 table is " << router[1][0][0].qtable[10][0] << "\t" << router[1][0][0].qtable[10][1] << \
+         ^
+./electronic_torus.h:987:9: warning: multi-line comment [-Wcomment]
+         // cout << "id8 table is " << router[0][1][0].qtable[10][0] << "\t" << router[0][1][0].qtable[10][1] << \
+         ^
+./electronic_torus.h:990:9: warning: multi-line comment [-Wcomment]
+         // cout << "id9 table is " << router[1][1][0].qtable[10][0] << "\t" << router[1][1][0].qtable[10][1] << \
+         ^
+./main.cpp:79:2: warning: multi-line comment [-Wcomment]
+  // command_str = "hotspot -c hotspot.config -f noc_8_8.flp -p " \
+  ^
+./main.cpp:82:5: warning: multi-line comment [-Wcomment]
+     // init_command_str = "hotspot -c hotspot.config -init_file " + steady_file_name + " -f noc_8_8.flp -p " \
+     ^
+In file included from /home/zhangzhe/Profile/systemC/include/sysc/datatypes/bit/sc_lv.h:49:0,
+                 from /home/zhangzhe/Profile/systemC/include/sysc/communication/sc_signal_rv.h:61,
+                 from /home/zhangzhe/Profile/systemC/include/systemc:74,
+                 from /home/zhangzhe/Profile/systemC/include/systemc.h:237,
+                 from ./Definition.h:4,
+                 from ./main.cpp:1:
+/home/zhangzhe/Profile/systemC/include/sysc/datatypes/bit/sc_lv_base.h: In member function ‘sc_dt::sc_logic_value_t sc_dt::sc_lv_base::get_bit(int) const’:
+/home/zhangzhe/Profile/systemC/include/sysc/datatypes/bit/sc_lv_base.h:309:47: warning: suggest parentheses around arithmetic in operand of ‘|’ [-Wparentheses]
+     return sc_logic_value_t( m_data[wi] >> bi & SC_DIGIT_ONE |
+                                               ^
+In file included from ./main.cpp:1:0:
+./Definition.h: In function ‘bool addData(flit_type)’:
+./Definition.h:740:7: warning: unused variable ‘result’ [-Wunused-variable]
+  bool result = false;
+       ^
+./Definition.h: In function ‘double getAverageLoss()’:
+./Definition.h:764:33: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+  for(int i=0; i < pkt_data.size(); i++){
+                                 ^
+./Definition.h: In function ‘double getAveragePower()’:
+./Definition.h:774:33: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+  for(int i=0; i < pkt_data.size(); i++){
+                                 ^
+In file included from ./electronic_torus.h:5:0,
+                 from ./main.cpp:2:
+./router.h: In member function ‘void Router::arbiter()’:
+./router.h:652:12: error: ‘temp_flit’ was not declared in this scope
+         if(temp_flit.src == 0 && temp_flit.dest == 17){
+            ^
+./router.h: In member function ‘int Router::routing(flit_type, int)’:
+./router.h:1370:36: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+    for (int i = 1; i < avil_d.size(); i++){
+                                    ^
+./router.h:1500:36: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+    for (int i = 1; i < avil_d.size(); i++){
+                                    ^
+In file included from ./GraphTask.h:3:0,
+                 from ./Processor_Statistical_Trace.h:5,
+                 from ./electronic_torus.h:7,
+                 from ./main.cpp:2:
+./GraphEdge.h: In member function ‘void GraphEdge::consume_token()’:
+./GraphEdge.h:49:66: warning: operation on ‘((GraphEdge*)this)->GraphEdge::num_incoming_token’ may be undefined [-Wsequence-point]
+  void     consume_token(){num_incoming_token=num_incoming_token--; return;}
+                                                                  ^
+In file included from ./GraphTask.h:3:0,
+                 from ./Processor_Statistical_Trace.h:5,
+                 from ./electronic_torus.h:7,
+                 from ./main.cpp:2:
+./GraphEdge.h: In member function ‘int GraphEdge::record_pkt(flit_type)’:
+./GraphEdge.h:220:37: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+  for(i=0;i<received_token_list.size();i++)
+                                     ^
+./GraphEdge.h:228:33: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+  if(i>=received_token_list.size())
+                                 ^
+./GraphEdge.h: In member function ‘bool GraphEdge::record_sent_pkt(flit_type)’:
+./GraphEdge.h:300:33: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+  for(i=0;i<sent_token_list.size();i++)
+                                 ^
+./GraphEdge.h:308:29: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+  if(i>=sent_token_list.size())
+                             ^
+In file included from ./electronic_torus.h:7:0,
+                 from ./main.cpp:2:
+./Processor_Statistical_Trace.h: In member function ‘void Processor::receive_packet()’:
+./Processor_Statistical_Trace.h:344:54: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+      for (int i = 0; i < temp_flit.routing_list.size(); i++)
+                                                      ^
+In file included from ./electronic_torus.h:7:0,
+                 from ./main.cpp:2:
+./Processor_Statistical_Trace.h:254:9: warning: unused variable ‘temp_src’ [-Wunused-variable]
+     int temp_src=temp_flit.src_task;
+         ^
+./Processor_Statistical_Trace.h:257:9: warning: unused variable ‘j’ [-Wunused-variable]
+     int j=0;
+         ^
+./Processor_Statistical_Trace.h:258:9: warning: unused variable ‘k’ [-Wunused-variable]
+     int k=0;
+         ^
+In file included from ./electronic_torus.h:7:0,
+                 from ./main.cpp:2:
+./Processor_Statistical_Trace.h: In member function ‘void Processor::task_execution()’:
+./Processor_Statistical_Trace.h:417:55: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+     if(waiting_list_offset>=task_in_waiting_list.size())
+                                                       ^
+./Processor_Statistical_Trace.h:473:19: warning: unused variable ‘in_edge’ [-Wunused-variable]
+        GraphEdge &in_edge=dst_task.get_incoming_edge_by_eid(edge_id);
+                   ^
+./Processor_Statistical_Trace.h:620:19: warning: unused variable ‘in_edge’ [-Wunused-variable]
+        GraphEdge &in_edge=dst_task.get_incoming_edge_by_eid(edge_id);
+                   ^
+./Processor_Statistical_Trace.h:685:56: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+      if(waiting_list_offset>=task_in_waiting_list.size())
+                                                        ^
+./Processor_Statistical_Trace.h:699:37: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+      if(task_offset>=task_list.size())
+                                     ^
+./Processor_Statistical_Trace.h: In member function ‘void Processor::resend()’:
+./Processor_Statistical_Trace.h:725:25: warning: statement has no effect [-Wunused-value]
+    reg_partial_ready_in == 0;
+                         ^
+./Processor_Statistical_Trace.h: In member function ‘void Processor::update_generator_buffer()’:
+./Processor_Statistical_Trace.h:746:38: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+  for(int i=0;i<generator_buffer.size();i++)
+                                      ^
+In file included from ./main.cpp:2:0:
+./electronic_torus.h: In member function ‘Processor& electronic_chip::get_proc(int)’:
+./electronic_torus.h:1395:27: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+  for (unsigned int i=0; i<processor_no; i++) {
+                           ^
+In file included from ./main.cpp:2:0:
+./electronic_torus.h: In member function ‘int electronic_chip::load_traffic(std::string)’:
+./electronic_torus.h:1521:27: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+  for (unsigned int i=0; i<processor_no; i++) {
+                           ^
+./electronic_torus.h: In member function ‘void electronic_chip::check_application_finish()’:
+./electronic_torus.h:1537:49: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+    for(int j=0;j<(*proc_list[i]).task_list.size();j++)
+                                                 ^
+./electronic_torus.h:1563:49: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+    for(int j=0;j<(*proc_list[i]).task_list.size();j++)
+                                                 ^
+./electronic_torus.h:1600:49: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+    for(int j=0;j<(*proc_list[i]).task_list.size();j++)
+                                                 ^
+./electronic_torus.h:1628:50: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+     for(int k=0;k<(*proc_list[j]).task_list.size();k++)
+                                                  ^
+./electronic_torus.h:1716:31: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+    for(int j=0;j<temp_sh.size();j++)
+                               ^
+./electronic_torus.h:1721:40: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+    for(int k=0;k<duration_history.size();k++)
+                                        ^
+./electronic_torus.h:1738:26: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+    for(int j=0;j<mh.size();j++)
+                          ^
+./electronic_torus.h:1746:26: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+    for(int j=0;j<mh.size();j++)
+                          ^
+./electronic_torus.h:1752:39: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+    for(int m=0;m<temp_token_size.size();m++)
+                                       ^
+./main.cpp: In function ‘int sc_main(int, char**)’:
+./main.cpp:103:9: warning: unused variable ‘found_stp’ [-Wunused-variable]
+  size_t found_stp = file_name.rfind("p");
+         ^
+In file included from ./Processor_Statistical_Trace.h:5:0,
+                 from ./electronic_torus.h:7,
+                 from ./main.cpp:2:
+./GraphTask.h: In member function ‘GraphEdge& GraphTask::get_incoming_edge_by_eid(int)’:
+./GraphTask.h:136:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+./GraphTask.h: In member function ‘GraphEdge& GraphTask::get_outgoing_edge_by_eid(int)’:
+./GraphTask.h:151:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^

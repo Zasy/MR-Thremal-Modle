@@ -1,0 +1,3 @@
+/Users/Mac/learning_noc/MR-Thremal-Modle/noc/NOC_Power_Cal/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/Mac/learning_noc/MR-Thremal-Modle/noc/NOC_Power_Cal/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/Mac/learning_noc/MR-Thremal-Modle/noc/NOC_Power_Cal/cmake-build-debug/CMakeFiles/NOC_Power_Cal.dir

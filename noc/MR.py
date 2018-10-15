@@ -75,6 +75,8 @@ def GetThroughPower(L_VCSEL, L_MR):
 def PowerToDb(transfer):
     return 10*math.log10(transfer)
 
+
+
 def PaintLambdaRelation():
     # off chip
     L = np.arange(1545, 1555, 0.1)
@@ -109,6 +111,3 @@ def PaintTemprature():
     plt.plot(T, DropPower, "r--", T, ThoughtPower)
     plt.ylabel("drop power dB")
     plt.show()
-
-PaintTemprature()
-PaintLambdaRelation()
